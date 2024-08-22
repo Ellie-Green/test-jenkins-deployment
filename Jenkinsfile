@@ -3,41 +3,54 @@ pipeline {
 
     environment {
         GIT_REPO_URL = "https://github.com/Ellie-Green/test-jenkins-deployment.git"
-        KUBE_CONFIG = credentials("kubeconfig credentials id")
+        
+        ECR_REPO = "direqtory-cont-dev"
+        IMAGE_NAME = "todo-api"
+        IMAGE_TAG = "latest"
+        AWS_ACCOUNT_ID = "308171262801"
+        AWS_REGION = "eu-west-2"
+        ECR_URI = "308171262801.dkr.ecr.eu-west-2.amazonaws.com/direqtory-cont-dev"
     }
 
     stages {
-        stage("Checkout") {
+        stage("Checkout code") {
             steps {
                 git branch: "main", url: "${GIT_REPO_URL}"
             }
         }
 
-        stage("Apply configmap") {
-            steps {
-                script{
-                    withKubeConfig([credentialsId: "kubeconfig credentials id"])
-                    sh "kubectl apply -f configmap.yaml"
-                }
-            }
-        }
-
-        stage ("Apply deployment") {
+        stage("Build docker image") {
             steps {
                 script {
-                    withKubeConfig([credentialsId: "kubeconfig credentials id"])
-                    sh "kubectl apply -f deployment.yaml"
+                    docker.build("${IMAGE_NAME}:${IMAGE_TAG}")
                 }
             }
         }
-    }
 
-    post {
-        success {
-            echo "Kubernetes resources applied successfully!"
+        stage("Login to ECR") {
+            steps{ 
+                script {
+                    sh """
+                    aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com 
+                    """
+                }
+            }
         }
-        failure {
-            echo "Failed to apply kubernetes resources."
+
+        stage("Tag docker image") {
+            steps {
+                script {
+                    sh "docker tag ${IMAGE_NAME}:${IMAGE_TAG}/${ECR_URI}:${IMAGE_TAG}"
+                }
+            }
+        }
+
+        stage("Push docker image to ecr") {
+            steps {
+                script {
+                    sh "docker push ${ECR_URI}:${IMAGE_TAG}"
+                }
+            }
         }
     }
 }
