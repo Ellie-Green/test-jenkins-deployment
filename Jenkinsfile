@@ -52,5 +52,31 @@ pipeline {
                 }
             }
         }
+
+        stage("Deploy to kubernetes") {
+            steps {
+                script {
+                    sh """
+                    kubectl apply -f configmap.yaml
+                    kubectl apply -f deployment.yaml
+                    """
+                }
+            }
+        }
+
+        stage("Verify deployment") {
+            steps {
+                script {
+                    sh """
+                    echo "Retrieving deployments ..."
+                    kubectl get deployments
+                    echo "Retrieving pods ..."
+                    kubectl get pods 
+                    echo "Retrieving services ..."
+                    kubectl get services
+                    """
+                }
+            }
+        }
     }
 }
