@@ -8,7 +8,7 @@ pipeline {
         IMAGE_NAME = "todo-api"
         IMAGE_TAG = "latest"
         AWS_ACCOUNT_ID = "308171262801"
-        AWS_REGION = "eu-west-1"
+        AWS_REGION = "eu-west-2"
         ECR_URI = "308171262801.dkr.ecr.eu-west-2.amazonaws.com/direqtory-cont-dev"
     }
 
