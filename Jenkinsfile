@@ -39,7 +39,6 @@ pipeline {
                     }
                 }
             }
-        }
 
         stage("Tag docker image") {
             steps {
