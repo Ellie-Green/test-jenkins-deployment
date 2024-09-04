@@ -71,8 +71,8 @@ pipeline {
             steps {
                 script {
                     sh """
-                    kubectl apply -f configmap.yaml
-                    kubectl apply -f deployment.yaml
+                    kubectl apply -f configmap.yaml --request-timeout='60s' --validate=false
+                    kubectl apply -f deployment.yaml --request-timeout='60s' --validate=false
                     """
                 }
             }
