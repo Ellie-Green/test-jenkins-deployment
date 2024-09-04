@@ -43,7 +43,7 @@ pipeline {
         stage("Tag docker image") {
             steps {
                 script {
-                    sh "docker tag ${IMAGE_NAME}:${IMAGE_TAG}"
+                    sh "docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${ECR_URI}:${IMAGE_TAG}"
                 }
             }
         }
