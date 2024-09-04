@@ -9,8 +9,8 @@ pipeline {
         IMAGE_TAG = "latest"
         AWS_ACCOUNT_ID = "308171262801"
         AWS_REGION = "eu-west-2"
-        //AWS_ACCESS_KEY_ID = credentials('aws-credentials-1')
-        //AWS_SECRET_ACCESS_KEY = credentials('aws-credentials-1')
+        AWS_ACCESS_KEY_ID = credentials('aws-credentials-1')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-credentials-1')
         ECR_URI = "308171262801.dkr.ecr.eu-west-2.amazonaws.com/direqtory-cont-dev"
     }
 
@@ -32,7 +32,6 @@ pipeline {
         stage("Login to ECR") {
             steps{ 
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'aws-credentials-1', usernameVariable: 'ASIAUPQDQJNITQ5S7DAR', passwordVariable: 'jwrWo6OvxEutLaantaVPwWfK3htx3FvYlKWKlNKa')]) {
                         sh """
                         aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com --profile
                         """
