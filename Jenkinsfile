@@ -9,8 +9,9 @@ pipeline {
         IMAGE_TAG = "latest"
         AWS_ACCOUNT_ID = "308171262801"
         AWS_REGION = "eu-west-2"
-        AWS_ACCESS_KEY_ID = credentials('aws-credentials-1')
-        AWS_SECRET_ACCESS_KEY = credentials('aws-credentials-1')
+        AWS_ACCESS_KEY_ID= credentials("aws-access-key-id")
+        AWS_SECRET_ACCESS_KEY= credentials("aws-secret-access-key")
+        AWS_SESSION_TOKEN= credentials("aws-session-token")
         ECR_URI = "308171262801.dkr.ecr.eu-west-2.amazonaws.com/direqtory-cont-dev"
     }
 
