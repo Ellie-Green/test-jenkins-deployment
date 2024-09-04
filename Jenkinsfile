@@ -7,6 +7,7 @@ pipeline {
         ECR_REPO = "direqtory-cont-dev"
         IMAGE_NAME = "todo-api"
         IMAGE_TAG = "latest"
+        CLUSTER_NAME = "eks-test"
         AWS_ACCOUNT_ID = "308171262801"
         AWS_REGION = "eu-west-2"
         AWS_ACCESS_KEY_ID= credentials("aws-access-key-id")
@@ -52,6 +53,16 @@ pipeline {
             steps {
                 script {
                     sh "docker push ${ECR_URI}:${IMAGE_TAG}"
+                }
+            }
+        }
+
+        stage("Update kubeconfig") {
+            steps {
+                script {
+                    sh """
+                    aws eks --region ${AWS_REGION} update-kubeconfig --name ${CLUSTER_NAME}
+                    """
                 }
             }
         }
