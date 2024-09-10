@@ -88,6 +88,8 @@ pipeline {
                     kubectl get pods 
                     echo "Retrieving services ..."
                     kubectl get services
+                    echo "Retrieving todo-api service"
+                    kubectl get services todo-api
                     """
                 }
             }
