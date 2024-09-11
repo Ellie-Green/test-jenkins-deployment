@@ -90,8 +90,6 @@ pipeline {
                     kubectl get services
                     echo "Retrieving todo-api service"
                     kubectl get services todo-api
-                    echo "Retrieving logs for todo-api"
-                    kubectl logs todo-api-84fc545748-l49lq
                     """
                 }
             }
