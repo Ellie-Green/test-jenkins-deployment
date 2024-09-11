@@ -94,20 +94,5 @@ pipeline {
                 }
             }
         }
-
-        stage("Delete resources") {
-            steps {
-                script {
-                    sh """
-                    echo "Delete deployments ..."
-                    kubectl delete deployments --all
-                    echo "Delete pods ..."
-                    kubectl delete pods --all
-                    echo "Delete services ..."
-                    kubectl delete services --all
-                    """
-                }
-            }
-        }
     }
 }
