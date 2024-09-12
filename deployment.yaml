@@ -63,7 +63,7 @@ spec:
         - name: todo-api
           image: 308171262801.dkr.ecr.eu-west-2.amazonaws.com/direqtory-cont-dev:latest
           ports:
-            - containerPort: 80
+            - containerPort: 3000
           envFrom:
             - configMapRef:
                 name: todo-app-config
@@ -80,5 +80,5 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 3000
   type: LoadBalancer
