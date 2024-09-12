@@ -94,17 +94,5 @@ pipeline {
                 }
             }
         }
-
-        stage("AWS load balancer controller configuration") {
-            steps {
-                script {
-                    sh """
-                    kubectl apply -f aws-load-balancer-controller-sa.yaml
-                    kubectl apply -f aws-load-balancer-controller-clusterrole.yaml
-                    kubectl apply -f aws-load-balancer-controller-clusterrolebinding.yaml
-                    """
-                }
-            }
-        }
     }
 }
