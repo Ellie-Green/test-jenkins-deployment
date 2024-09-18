@@ -106,8 +106,7 @@ metadata:
     alb.ingress.kubernetes.io/target-type: instance
     # backend protocol
     alb.ingress.kubernetes.io/backend-protocol: HTTP
-    # https redirection
-    #alb.ingress.kubernetes.io/actions.redirect-to-https: '{"Type":"redirect","RedirectConfig":{"Protocol":"HTTPS","Port":"443","StatusCode":"HTTP_301"}}'
+
 spec:
   rules: 
   - host: k8s-default-todoapi-d9e96b13b3-49ada706f8b023c2.elb.eu-west-2.amazonaws.com
