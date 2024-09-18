@@ -28,6 +28,11 @@ mongoose.connection.once("open", function () {
   console.log("Successfully connected to the database");
 });
 
+// Root route
+app.get('/', (req, res) => {
+    res.send('Hello, world!');
+});
+
 // Todo Routes
 app.use("/api/todos", todoRoutes);
 
