@@ -28,9 +28,7 @@ mongoose.connection.once("open", function () {
   console.log("Successfully connected to the database");
 });
 
-'use strict';
-module.exports = function(app){
-	var todofunctions = require('../controllers/todo.controller');
+const todofunctions = require('../controllers/todo.controller');
 
 // todo routes
 app.route('/tasks')      //task [GET (all thetasks),POST]
@@ -41,7 +39,7 @@ app.route('/tasks/:taskId')  //a task [GET(single task),PUT,DELETE]
   .put(todofunctions.updatetask)
   .get(todofunctions.readTask)
   .delete(todofunctions.deleteTask);
-};
+
 //app.use("/api/todos", todoRoutes);
 
 // listen for requests
