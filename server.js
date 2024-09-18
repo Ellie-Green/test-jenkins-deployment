@@ -28,7 +28,7 @@ mongoose.connection.once("open", function () {
   console.log("Successfully connected to the database");
 });
 
-app.get("/hello", (req, res) => {
+app.get("/api/todos", (req, res) => {
     res.send("Hello world");
 });
 
