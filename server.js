@@ -29,11 +29,12 @@ mongoose.connection.once("open", function () {
 });
 
 // Root route
-app.get('/', (req, res) => {
-    res.send('Hello, world!');
-});
+//app.get('/', (req, res) => {
+    //res.send('Hello, world!');
+//});
 
 // Todo Routes
+app.route('/')
 app.use("/api/todos", todoRoutes);
 
 // listen for requests
