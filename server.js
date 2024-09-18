@@ -28,9 +28,6 @@ mongoose.connection.once("open", function () {
   console.log("Successfully connected to the database");
 });
 
-//app.get("/k8s-default-todoapi-d9e96b13b3-49ada706f8b023c2.elb.eu-west-2.amazonaws.com", (req, res) => {
-    //res.send("Hello");
-//});
 app.use("/api/todos", todoRoutes);
 
 // listen for requests
