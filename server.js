@@ -28,21 +28,9 @@ mongoose.connection.once("open", function () {
   console.log("Successfully connected to the database");
 });
 
-//const todofunctions = require('../controllers/todo.controller');
-
-// todo routes
-//app.route('/tasks')      //task [GET (all thetasks),POST]
-  //.get(todofunctions.listTasks)
-  //.post(todofunctions.createTask);
-
-//app.route('/tasks/:taskId')  //a task [GET(single task),PUT,DELETE]
-  //.put(todofunctions.updatetask)
-  //.get(todofunctions.readTask)
-  //.delete(todofunctions.deleteTask);
-
-app.get("/k8s-default-todoapi-d9e96b13b3-49ada706f8b023c2.elb.eu-west-2.amazonaws.com", (req, res) => {
-    res.send("Hello");
-});
+//app.get("/k8s-default-todoapi-d9e96b13b3-49ada706f8b023c2.elb.eu-west-2.amazonaws.com", (req, res) => {
+    //res.send("Hello");
+//});
 app.use("/api/todos", todoRoutes);
 
 // listen for requests
