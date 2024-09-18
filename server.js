@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 app.use("/api/todos", todoRoutes);
 
 // listen for requests
-const PORT = config.port;
-app.listen(PORT, function () {
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
   console.log("Server is listening on port 3000");
 });
